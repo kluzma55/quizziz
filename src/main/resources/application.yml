@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+  application:
+    name: QuizzizBackend
+server:
+  port: 8080
+app:
+  name: QuizzizBackend
