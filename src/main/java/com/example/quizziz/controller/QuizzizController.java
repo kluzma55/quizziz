@@ -1,5 +1,6 @@
 package com.example.quizziz.controller;
 
+import com.example.quizziz.model.dto.AppUserDTO;
 import com.example.quizziz.model.dto.QuestionDTO;
 import com.example.quizziz.model.dto.QuizSubmission;
 import com.example.quizziz.model.entity.Category;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -37,10 +39,29 @@ public class QuizzizController {
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
+    @GetMapping("/difficulties")
+    public List<String> getDifficulties() {
+        return Arrays.stream(Difficulty.values())
+                .map(Enum::name)
+                .toList();
+    }
+
+    @GetMapping("/categories")
+    public List<String> getCategories() {
+        return Arrays.stream(Category.values())
+                .map(Enum::name)
+                .toList();
+    }
     @PostMapping("/addQuestions")
     public ResponseEntity<String> addQuestion(@RequestBody QuestionDTO questionDTO) {
         quizService.addQuestion(questionDTO);
         return new ResponseEntity<>("Otázka byla úspěšně přidána!", HttpStatus.CREATED);
+    }
+
+    @PostMapping("/addAppUsers")
+    public ResponseEntity<String> addAppUser(@RequestBody AppUserDTO appUserDTO) {
+        quizService.addAppUser(appUserDTO);
+        return new ResponseEntity<>("Hráč byl úspěšně přidán!", HttpStatus.CREATED);
     }
 
     @PostMapping("/submit")

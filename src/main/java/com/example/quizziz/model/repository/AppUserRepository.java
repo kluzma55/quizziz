@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface AppUserRepository extends JpaRepository<AppUser, Long> {
+public interface AppUserRepository extends JpaRepository<AppUser, Integer> {
     List<AppUser> findByCategoryAndDifficulty(Category category, Difficulty difficulty);
     List<AppUser> findTop10ByOrderByScoreDesc();
 }

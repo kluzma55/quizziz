@@ -1,5 +1,6 @@
 package com.example.quizziz.service;
 
+import com.example.quizziz.model.dto.AppUserDTO;
 import com.example.quizziz.model.entity.*;
 import com.example.quizziz.model.dto.QuestionDTO;
 import com.example.quizziz.model.dto.QuizSubmission;
@@ -34,6 +35,16 @@ public class QuizService {
         question.setDifficulty(questionDTO.getDifficulty());
 
         questionRepository.save(question);
+    }
+
+    public void addAppUser(AppUserDTO appUserDTO) {
+        AppUser appUser = new AppUser();
+        appUser.setNickname(appUserDTO.getNickname());
+        appUser.setScore(appUserDTO.getScore());
+        appUser.setCategory(appUserDTO.getCategory());
+        appUser.setDifficulty(appUserDTO.getDifficulty());
+
+        appUserRepository.save(appUser);
     }
 
     public List<QuestionDTO> getAllQuestions() {
