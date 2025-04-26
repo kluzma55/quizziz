@@ -8,14 +8,9 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class QuestionDTO {
-    private String questionText;
-    private String answer1;
-    private String answer2;
-    private String answer3;
-    private String answer4;
-    private Integer correctAnswer;
+public class AppUserDTO {
+    private String nickname;
+    private Integer score;
     private Category category;
     private Difficulty difficulty;
 }
-

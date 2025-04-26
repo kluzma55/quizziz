@@ -9,28 +9,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Question {
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 1000)
-    private String question;
-
     @Column(nullable = false)
-    private String answer1;
-
-    @Column(nullable = false)
-    private String answer2;
-
-    @Column(nullable = false)
-    private String answer3;
-
-    @Column(nullable = false)
-    private String answer4;
-
-    @Column(nullable = false)
-    private Integer correctAnswer;
+    private String nickname;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -39,4 +24,7 @@ public class Question {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Difficulty difficulty;
+
+    @Column(nullable = false)
+    private int score;
 }
