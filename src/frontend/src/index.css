@@ -1,6 +1,31 @@
-body{
-  background-color:gray;
-  text-align: center; 
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  background: #111;
+  color: #39ff14;
+  font-family: 'Press Start 2P', monospace;
+  text-align: center;
+  margin: 0;
+  min-height: 100vh;
+  letter-spacing: 1px;
+}
+
+.retro-btn {
+  background: #111 !important;
+  color: #fff600 !important;
+  border: 3px solid #fff600 !important;
+  border-radius: 6px !important;
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 1rem !important;
+  padding: 16px 32px !important;
+  margin: 12px 0 !important;
+  box-shadow: 0 0 8px #fff600, 0 0 2px #fff600 inset !important;
+  text-transform: none !important;
+}
+.retro-btn:hover {
+  background: #fff600 !important;
+  color: #111 !important;
+  box-shadow: 0 0 16px #fff600, 0 0 8px #fff600 inset !important;
 }
 
 .error-message {

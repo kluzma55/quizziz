@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const Winner = () => {
   const [players, setPlayers] = useState([]);
@@ -38,6 +40,11 @@ const Winner = () => {
           ))}
         </tbody>
       </table>
+      <Link to="/Nickname">
+        <Button className = "retro-btn">
+          Hrát kvíz
+        </Button>
+      </Link>
     </div>
   );
 }

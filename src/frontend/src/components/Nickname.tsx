@@ -67,7 +67,7 @@ const Nickname = () => {
         ))}
       </select>
 
-      <button onClick={handleStartQuiz}>Začít kvíz</button>
+      <button className = "retro-btn" onClick={handleStartQuiz}>Začít kvíz</button>
 
       {error && <p className="error-message">{error}</p>}
     </div>

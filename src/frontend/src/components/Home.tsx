@@ -17,14 +17,14 @@ const Home = (props: any) => {
             Otestuj své znalosti. Po dokončení kvízu uvidíš své skóre a žebříček nejlepších hráčů.
         </p>
         <Box>
-            <Link to="/Question">
-            <Button>
+            <Link to="/Nickname">
+            <Button className = "retro-btn">
                 Otestuj své znalosti
             </Button>
             </Link>
             <div>
             <Link to="/Winner">
-            <Button>
+            <Button className = "retro-btn">
                 Žebříček
             </Button>
             </Link>

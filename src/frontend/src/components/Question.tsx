@@ -35,8 +35,10 @@ const Questions = () => {
 
   const handleAnswerClick = (selectedIndex: number) => {
     const currentQuestion = questions[currentIndex];
-    if (selectedIndex === currentQuestion.correctAnswer) {
-      setScore(score + 1);
+    const isCorrect = selectedIndex === currentQuestion.correctAnswer;
+    const updatedScore = isCorrect ? score + 1 : score;
+
+    if (isCorrect) {
       setFeedback('Správně!');
     } else {
       setFeedback('Špatně!');
@@ -45,12 +47,28 @@ const Questions = () => {
     setTimeout(() => {
       setFeedback('');
       if (currentIndex + 1 < 10) {
+        setScore(updatedScore);
         setCurrentIndex(currentIndex + 1);
       } else {
-        localStorage.setItem('score', score.toString());
-        navigate('/winner');
+        const nickname = localStorage.getItem('nickname');
+        const category = localStorage.getItem('category');
+        const difficulty = localStorage.getItem('difficulty');
+
+        axios.post('http://localhost:8080/addAppUsers', {
+          nickname: nickname,
+          category: category,
+          difficulty: difficulty,
+          score: updatedScore
+        })
+        .then(() => {
+          navigate('/winner');
+        })
+        .catch(error => {
+          console.error('Chyba pri ukladaní hráča:', error);
+           navigate('/winner');
+        });
       }
-    }, 1000); // Čas, za který se posuneme na další otázku
+    }, 1000);
   };
 
   if (questions.length === 0) {
