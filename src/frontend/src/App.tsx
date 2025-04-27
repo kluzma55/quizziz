@@ -5,6 +5,7 @@ import Question from "./components/Question";
 import Answer from "./components/Answer";
 import Winner from "./components/Winner";
 import Nickname from "./components/Nickname";
+import Score from "./components/Score";
 
 function App() {
 return(
@@ -15,6 +16,7 @@ return(
       <Route path="/Answer" element={<Answer />}/>
       <Route path="/Winner" element={<Winner />}/>
       <Route path="/Nickname" element={<Nickname />}/>
+      <Route path="/Score" element={<Score />}/>
     </Routes>
   </div>
 );

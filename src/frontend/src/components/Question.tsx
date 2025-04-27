@@ -61,11 +61,11 @@ const Questions = () => {
           score: updatedScore
         })
         .then(() => {
-          navigate('/winner');
+          navigate('/score');
         })
         .catch(error => {
-          console.error('Chyba pri ukladaní hráča:', error);
-           navigate('/winner');
+          console.error('Chyba při ukládání hráče:', error);
+           navigate('/score');
         });
       }
     }, 1000);
