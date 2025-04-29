@@ -35,40 +35,44 @@ const Nickname = () => {
 
   return (
     <div>
-      <h1>Napiš svou přezdívku</h1>
-      <input
-        type="text"
-        placeholder="Tvoje přezdívka"
-        value={nickname}
-        onChange={(e) => setNickname(e.target.value)}
-      />
+      <h1>Napiš svou přezdívku!</h1>
+      <form>
+        <div className="input-group">
+          <input
+            type="text"
+            placeholder="Tvoje přezdívka"
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
+          />
 
-      <select
-        value={difficulty}
-        onChange={(e) => setDifficulty(e.target.value)}
-      >
-        <option value="">Vyber náročnost</option>
-        {difficulties.map((difficulty) => (
-          <option key={difficulty} value={difficulty}>
-            {difficulty}
-          </option>
-        ))}
-      </select>
+          <select
+            value={difficulty}
+            onChange={(e) => setDifficulty(e.target.value)}
+          >
+            <option value="">Vyber náročnost</option>
+            {difficulties.map((difficulty) => (
+              <option key={difficulty} value={difficulty}>
+                {difficulty}
+              </option>
+            ))}
+          </select>
 
-      <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      >
-        <option value="">Vyber téma</option>
-        {categories.map((category) => (
-          <option key={category} value={category}>
-            {category}
-          </option>
-        ))}
-      </select>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="">Vyber téma</option>
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+    
+      </form>
 
-      <button className = "retro-btn" onClick={handleStartQuiz}>Začít kvíz</button>
-
+      <button className="retro-btn" onClick={handleStartQuiz}>Začít kvíz</button>
       {error && <p className="error-message">{error}</p>}
     </div>
   );

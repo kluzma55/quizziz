@@ -38,11 +38,13 @@ const Winner = () => {
             Hrát znovu
         </Button>
       </Link>
-      <Link to="/Winner">
-        <Button className = "retro-btn">
+      <div>
+        <Link to="/Winner">
+          <Button className = "retro-btn">
             Žebříček
-        </Button>
-      </Link>
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };

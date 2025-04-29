@@ -10,6 +10,14 @@ body {
   letter-spacing: 1px;
 }
 
+input, select, button {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
 .retro-btn {
   background: #111 !important;
   color: #fff600 !important;
@@ -22,10 +30,111 @@ body {
   box-shadow: 0 0 8px #fff600, 0 0 2px #fff600 inset !important;
   text-transform: none !important;
 }
+
 .retro-btn:hover {
   background: #fff600 !important;
   color: #111 !important;
   box-shadow: 0 0 16px #fff600, 0 0 8px #fff600 inset !important;
+}
+
+h1 {
+  margin: 40px;
+}
+
+h2 {
+  margin: 40px;
+}
+
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 80%;
+  padding-bottom: 20px;
+}
+
+input, select {
+  background: #111;
+  color: #fff600;
+  border: 3px solid #fff600;
+  font-family: 'Press Start 2P', monospace !important;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 16px;
+  width: 30%;
+}
+
+select {
+  background: #111 url('data:image/svg+xml;utf8,<svg fill="%23fff600" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h3 {
+  margin: 40px;
+}
+
+.answers-grid {
+  width: 50%;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 30px;
+  row-gap: 5px;
+  justify-items: center;
+  margin-top: 40px;
+}
+
+.answers-grid .retro-btn {
+  width: 100%;
+  height: 100px;
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 3px solid #39ff14;
+  border-radius: 20px;
+  overflow: hidden;
+
+}
+
+td {
+  padding: 10px 40px;
+}
+
+thead th {
+  padding: 40px;
+}
+
+tbody tr:last-child td {
+  padding-bottom: 40px;
 }
 
 .error-message {

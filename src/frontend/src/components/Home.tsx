@@ -5,7 +5,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
 
 const Home = (props: any) => {
   return (
-    <div>
+    <div className = "centered-container">
         <h1>
             Pojďte si záhrát kvíz!
         </h1>

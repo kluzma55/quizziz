@@ -18,7 +18,7 @@ const Winner = () => {
   }, []);
 
   return (
-    <div>
+    <div className = "centered-container">
       <h1>Top 10 hráčů</h1>
       <table>
         <thead>
