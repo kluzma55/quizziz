@@ -137,6 +137,22 @@ tbody tr:last-child td {
   padding-bottom: 40px;
 }
 
+.progress-bar {
+  width: 50%;
+  height: 10px;
+  background-color: #333;
+  border: 2px solid #39ff14;
+  margin: 20px auto 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #39ff14;
+  transition: width linear;
+}
+
 .error-message {
   color: red;
   font-size: 14px;

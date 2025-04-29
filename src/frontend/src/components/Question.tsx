@@ -7,7 +7,7 @@ const Questions = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState('');
-  const [timeLeft, setTimeLeft] = useState(5);
+  const [timeLeft, setTimeLeft] = useState(8);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,23 +32,32 @@ const Questions = () => {
         console.error('Chyba při načítaní otázek:', error);
       });
   }, []);
-
-  // Odpočítavanie času
+  
   useEffect(() => {
     if (questions.length === 0) return;
-
-    const timer = setInterval(() => {
+  
+    setTimeLeft(8);
+  
+    const countdown = setInterval(() => {
       setTimeLeft(prev => {
-        if (prev === 1) {
-          clearInterval(timer);
-          handleAnswerTimeout(); // Automatický posun otázky
+        if (prev <= 1) {
+          clearInterval(countdown);
+          return 0;
         }
         return prev - 1;
       });
     }, 1000);
-
-    return () => clearInterval(timer);
+  
+    const timeout = setTimeout(() => {
+        goToNextQuestion(score);
+    }, 8000);
+  
+    return () => {
+      clearInterval(countdown);
+      clearTimeout(timeout);
+    };
   }, [currentIndex, questions]);
+  
 
   const handleAnswerClick = (selectedIndex: number) => {
     const currentQuestion = questions[currentIndex];
@@ -56,27 +65,17 @@ const Questions = () => {
     const updatedScore = isCorrect ? score + 1 : score;
 
     setFeedback(isCorrect ? 'Správně!' : 'Špatně!');
-    clearTimeout();
 
     setTimeout(() => {
-      setFeedback('');
       setScore(updatedScore);
-      goToNextQuestion(updatedScore);
-    }, 1000);
-  };
-
-  const handleAnswerTimeout = () => {
-    setFeedback('Čas vypršel!');
-    setTimeout(() => {
       setFeedback('');
-      goToNextQuestion(score);
+      goToNextQuestion(updatedScore);
     }, 1000);
   };
 
   const goToNextQuestion = (updatedScore: number) => {
     if (currentIndex + 1 < 10) {
       setCurrentIndex(prev => prev + 1);
-      setTimeLeft(5);
     } else {
       const nickname = localStorage.getItem('nickname');
       const category = localStorage.getItem('category');
@@ -103,7 +102,7 @@ const Questions = () => {
   const currentQuestion = questions[currentIndex];
 
   return (
-    <div>
+    <div className="centered-container">
       <h2>Otázka {currentIndex + 1} / 10</h2>
       <h3>{currentQuestion.questionText}</h3>
       <div className="answers-grid">
@@ -112,11 +111,14 @@ const Questions = () => {
         <button className="retro-btn" onClick={() => handleAnswerClick(3)}>{currentQuestion.answer3}</button>
         <button className="retro-btn" onClick={() => handleAnswerClick(4)}>{currentQuestion.answer4}</button>
       </div>
-      {feedback ? (
-        <p>{feedback}</p>
-      ) : (
-        <p>{timeLeft}</p>
-      )}
+      <p>{feedback ? feedback : timeLeft}</p>
+
+      <div className="progress-bar">
+        <div
+          className="progress-fill"
+          style={{ width: `${(timeLeft / 8) * 100}%` }}
+        ></div>
+      </div>
     </div>
   );
 };
