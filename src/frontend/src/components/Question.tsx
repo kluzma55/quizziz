@@ -100,23 +100,25 @@ const Questions = () => {
   }
 
   const currentQuestion = questions[currentIndex];
+  const timer = timeLeft - 1;
 
   return (
     <div className="centered-container">
       <h2>Otázka {currentIndex + 1} / 10</h2>
       <h3>{currentQuestion.questionText}</h3>
       <div className="answers-grid">
-        <button className="retro-btn" onClick={() => handleAnswerClick(1)}>{currentQuestion.answer1}</button>
-        <button className="retro-btn" onClick={() => handleAnswerClick(2)}>{currentQuestion.answer2}</button>
-        <button className="retro-btn" onClick={() => handleAnswerClick(3)}>{currentQuestion.answer3}</button>
-        <button className="retro-btn" onClick={() => handleAnswerClick(4)}>{currentQuestion.answer4}</button>
+        <button className="retro-btn" disabled={timer === 0} onClick={() => handleAnswerClick(1)}>{currentQuestion.answer1}</button>
+        <button className="retro-btn" disabled={timer === 0} onClick={() => handleAnswerClick(2)}>{currentQuestion.answer2}</button>
+        <button className="retro-btn" disabled={timer === 0} onClick={() => handleAnswerClick(3)}>{currentQuestion.answer3}</button>
+        <button className="retro-btn" disabled={timer === 0} onClick={() => handleAnswerClick(4)}>{currentQuestion.answer4}</button>
       </div>
-      <p>{feedback ? feedback : timeLeft}</p>
+
+      <p>{feedback ? feedback : timer}</p>
 
       <div className="progress-bar">
         <div
           className="progress-fill"
-          style={{ width: `${(timeLeft / 8) * 100}%` }}
+          style={{ width: `${(timer / 7) * 100}%` }}
         ></div>
       </div>
     </div>

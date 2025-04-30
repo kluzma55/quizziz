@@ -37,6 +37,12 @@ input, select, button {
   box-shadow: 0 0 16px #fff600, 0 0 8px #fff600 inset !important;
 }
 
+.retro-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transition: opacity 0.3s ease;
+}
+
 h1 {
   margin: 40px;
 }
@@ -151,6 +157,44 @@ tbody tr:last-child td {
   height: 100%;
   background-color: #39ff14;
   transition: width linear;
+}
+
+.intro-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.intro-left {
+  flex: 1 1;
+}
+
+.intro-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.intro-right img {
+  max-width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.home-content {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .error-message {

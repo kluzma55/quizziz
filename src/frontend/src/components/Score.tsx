@@ -1,10 +1,12 @@
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Winner = () => {
   const [nickname, setNickname] = useState('');
   const [score, setScore] = useState(0);
+  const [revealed, setRevealed] = useState(false);
+  const audio = new Audio('/Old victory sound roblox.mp3');
 
   useEffect(() => {
     const storedNickname = localStorage.getItem('nickname');
@@ -19,32 +21,44 @@ const Winner = () => {
   }, []);
 
   const getBodText = (score: number) => {
-    if (score === 1) {
-      return 'bod';
-    } else if (score >= 2 && score <= 4) {
-      return 'body';
-    } else {
-      return 'bodů';
-    }
+    if (score === 1) return 'bod';
+    if (score >= 2 && score <= 4) return 'body';
+    return 'bodů';
   };
-  
+
+  const handleReveal = () => {
+    audio.play();
+    setRevealed(true);
+  };
 
   return (
-    <div>
-      <h1>Gratulujeme, {nickname}!</h1>
-      <h2>Dosiáhl jsi {score} {getBodText(score)}!</h2>
-      <Link to="/Nickname">
-        <Button className = "retro-btn">
-            Hrát znovu
-        </Button>
-      </Link>
       <div>
-        <Link to="/Winner">
-          <Button className = "retro-btn">
-            Žebříček
-          </Button>
-        </Link>
-      </div>
+      {!revealed ? (
+        <div>
+          <h1>Konec kvízu</h1>
+          <Button className="retro-btn" onClick={handleReveal}>
+          Klikni pro odhalení skóre!
+        </Button>
+        </div>
+      ) : (
+        <div>
+          <h1>Gratulujeme, {nickname}!</h1>
+          <h2>Dosáhl/a jsi {score} {getBodText(score)}!</h2>
+
+          <Box className="button-row">
+                <Link to="/Nickname">
+                    <Button className="retro-btn">
+                      Hrát znovu
+                    </Button>
+                </Link>
+                <Link to="/Winner">
+                    <Button className="retro-btn">
+                      Žebříček
+                    </Button>
+                </Link>
+            </Box>
+          </div>
+      )}
     </div>
   );
 };
