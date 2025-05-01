@@ -2,11 +2,9 @@ package com.example.quizziz.controller;
 
 import com.example.quizziz.model.dto.AppUserDTO;
 import com.example.quizziz.model.dto.QuestionDTO;
-import com.example.quizziz.model.dto.QuizSubmission;
 import com.example.quizziz.model.entity.Category;
 import com.example.quizziz.model.entity.Difficulty;
 import com.example.quizziz.model.entity.AppUser;
-import com.example.quizziz.model.repository.AppUserRepository;
 import com.example.quizziz.service.QuizService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -27,7 +25,6 @@ public class QuizzizController {
     public String getName(@RequestParam ("value") String name) {
         return "inserted name is " + name;
     }
-
 
     public QuizzizController(QuizService quizService) {
         this.quizService = quizService;
@@ -62,21 +59,6 @@ public class QuizzizController {
     public ResponseEntity<String> addAppUser(@RequestBody AppUserDTO appUserDTO) {
         quizService.addAppUser(appUserDTO);
         return new ResponseEntity<>("Hráč byl úspěšně přidán!", HttpStatus.CREATED);
-    }
-
-    @PostMapping("/submit")
-    public ResponseEntity<Integer> submitQuiz(@RequestBody QuizSubmission submission) {
-        int score = quizService.evaluateQuiz(submission);
-        return new ResponseEntity<>(score, HttpStatus.OK);
-    }
-
-    @PostMapping("/result")
-    public ResponseEntity<String> saveResult(@RequestParam String nickname,
-                                             @RequestParam int score,
-                                             @RequestParam Category category,
-                                             @RequestParam Difficulty difficulty) {
-        quizService.saveUserResult(nickname, score, category, difficulty);
-        return new ResponseEntity<>("Result saved!", HttpStatus.OK);
     }
 
     @GetMapping("/top10")

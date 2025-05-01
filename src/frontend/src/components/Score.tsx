@@ -20,9 +20,9 @@ const Winner = () => {
     }
   }, []);
 
-  const getBodText = (score: number) => {
-    if (score === 1) return 'bod';
-    if (score >= 2 && score <= 4) return 'body';
+  const getBodText = (storedScore: number) => {
+    if (storedScore === 1) return 'bod';
+    if (storedScore >= 2 && storedScore <= 4) return 'body';
     return 'bodů';
   };
 

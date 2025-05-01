@@ -80,6 +80,7 @@ const Questions = () => {
       const nickname = localStorage.getItem('nickname');
       const category = localStorage.getItem('category');
       const difficulty = localStorage.getItem('difficulty');
+      localStorage.setItem('score', updatedScore.toString());
 
       axios.post('http://localhost:8080/addAppUsers', {
         nickname,
@@ -87,7 +88,9 @@ const Questions = () => {
         difficulty,
         score: updatedScore
       })
-        .then(() => navigate('/score'))
+        .then(() => {
+          navigate('/score');
+        })
         .catch(error => {
           console.error('Chyba při ukládání hráče:', error);
           navigate('/score');

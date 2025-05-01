@@ -3,7 +3,6 @@ package com.example.quizziz.service;
 import com.example.quizziz.model.dto.AppUserDTO;
 import com.example.quizziz.model.entity.*;
 import com.example.quizziz.model.dto.QuestionDTO;
-import com.example.quizziz.model.dto.QuizSubmission;
 import com.example.quizziz.model.entity.AppUser;
 import com.example.quizziz.model.repository.QuestionRepository;
 import com.example.quizziz.model.repository.AppUserRepository;
@@ -64,32 +63,6 @@ public class QuizService {
         dto.setCategory(question.getCategory());
         dto.setDifficulty(question.getDifficulty());
         return dto;
-    }
-
-    public int evaluateQuiz(QuizSubmission submission) {
-        int score = 0;
-
-        for (Integer questionId : submission.getAnswers().keySet()) {
-            Question question = questionRepository.findById(questionId).orElse(null);
-            if (question != null) {
-                Integer selectedAnswerId = submission.getAnswers().get(questionId);
-
-                if (question.getCorrectAnswer().equals(selectedAnswerId)) {
-                    score++;
-                }
-            }
-        }
-
-        return score;
-    }
-
-    public void saveUserResult(String nickname, int score, Category category, Difficulty difficulty) {
-        AppUser appUser = new AppUser();
-        appUser.setNickname(nickname);
-        appUser.setScore(score);
-        appUser.setCategory(category);
-        appUser.setDifficulty(difficulty);
-        appUserRepository.save(appUser);
     }
 
     public List<AppUser> getTop10Users() {
